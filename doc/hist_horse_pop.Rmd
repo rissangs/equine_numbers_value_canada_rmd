@@ -1,6 +1,9 @@
 ---
 title: "Historical horse population in Canada"
-output: github_document
+bibliography: references.bib
+output: 
+  github_document:
+    toc: true
 ---
 
 ```{r setup, include=FALSE}
@@ -31,7 +34,7 @@ Horse population data were sourced from the [Government of Canada's Open Data we
 
 ## Methods
 
-The R programming language and the following R packages were used to perform the analysis: knitr and tidyverse. The code used to perform the analysis and create this report can be found here: https://github.com/ttimbers/equine_numbers_value_canada_rmd.
+The R programming language [@R] and the following R packages were used to perform the analysis: knitr [@knitr] and tidyverse [@tidyverse]. The code used to perform the analysis and create this report can be found here: https://github.com/ttimbers/equine_numbers_value_canada_rmd.
 
 
 ## Results
@@ -55,7 +58,7 @@ industry after the Great Depression and the Second World War. An interesting fol
 
 Next we look at the range of the number horses for each provinces at any time point between 1940 - 1972:
 
-```{r max horse table, message=FALSE, warning=FALSE}
+```{r max horse table, message=FALSE, warning=FALSE,}
 max_horses <- horse_pop %>% 
   select(GEO, Value) %>% 
   rename(Province = GEO) %>% 
@@ -68,7 +71,7 @@ kable(max_horses,
 
 Below we zoom in and look at the province of Alberta:
 
-```{r plot province, fig.width=5, fig.height=4, fig.cap="Figure 2. Horse populations for Alberta between 1940 - 1972.", out.width='100%'}
+```{r plot province, fig.width=5, fig.height=4, fig.cap="Figure 2. Horse populations for Alberta between 1940 - 1972.", out.width='50%'}
 province_plot <- horse_pop %>% 
   filter(GEO == "Alberta") %>% 
   ggplot(aes(x = Ref_Date, y = Value)) +
